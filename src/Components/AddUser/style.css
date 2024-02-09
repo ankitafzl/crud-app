@@ -1,0 +1,9 @@
+.MuiRadio-colorSecondary.Mui-checked{
+    color:blue !important;
+}
+/* .MuiIconButton-colorSecondary {
+    color: blue !important;
+} */
+.MuiCheckbox-root {
+    color: blue !important; ;
+}
