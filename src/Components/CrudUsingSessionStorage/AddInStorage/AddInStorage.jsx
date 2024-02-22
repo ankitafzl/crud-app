@@ -8,6 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
+import Navbar from '../Navbar/Navbar';
 //import FormHelperText from "@mui/material/FormHelperText";
 
 const AddInStorage = () =>{
@@ -33,32 +34,34 @@ const AddInStorage = () =>{
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setAddData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-    };
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const storedData = JSON.parse(sessionStorage.getItem('addData')) || [];
-        storedData.push(addData);
-        sessionStorage.setItem('addData', JSON.stringify(storedData));
+      const { name, value } = e.target;
+      setAddData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+  };
+  
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      const storedData = JSON.parse(sessionStorage.getItem('addData')) || [];
+      storedData.push(addData);
+      sessionStorage.setItem('addData', JSON.stringify(storedData));
 
-    // Clear form data
-      setAddData({
-        username: '',
-        email: '',
-        age: '',
-        gender: '',
-        education: '',
-        subjects: [],
-      });
-    };
+  // Clear form data
+    setAddData({
+      username: '',
+      email: '',
+      age: '',
+      gender: '',
+      education: '',
+      subjects: [],
+    });
+  };
 
     return (
-        <Grid>
+        <>
+        <Navbar/>
+          <Grid>
           <Paper elevation={20} style={paperStyle}>
             <Grid align="center">
               <h2 style={headerStyle}> Add Details In Session Storage</h2>
@@ -98,6 +101,7 @@ const AddInStorage = () =>{
             </form>
           </Paper>
         </Grid>
+        </>
       );
 } 
 

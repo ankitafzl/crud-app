@@ -8,9 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button, Grid } from "@mui/material";
-import Edit from "../Edit/Edit";
-import Delete from "../Delete/Delete";
 import { useNavigate } from 'react-router';
+import Navbar from "../Navbar/Navbar";
 
 //const ViewAll = ({setUpdateValue}) => {
 
@@ -28,7 +27,7 @@ const ViewAll = () => {
   const fetchData = async () => {
     try {
       await fetch(
-        "https://crudcrud.com/api/b0ba154660574efa9edffa0662440163/unicorns"
+        "https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns"
       ).then((result) => {
         result.json().then((resp) => {
           setData(resp);
@@ -43,18 +42,27 @@ const ViewAll = () => {
     navigate('/updateDetails', { state: data }); 
   };
 
-  const handleDelete = async () => {
-    try {
-      await fetch('https://crudcrud.com/api/9d044fbc3f3b462c9634ebb5d5003d09/unicorns', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    }catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  // const handleDelete = async () => {
+  //   try {
+  //     await fetch('https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns', {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //   }catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
+
+    const handleDelete = (id) =>{
+      fetch(`https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns/${id}`, {
+         method: "DELETE"
+      }).then(() => {
+      const updatedData = data.filter(user => user._id !== id);
+      setData(updatedData);
+    }).catch((error) => console.error('Error deleting user:', error));
+    };
 
   useEffect(() => {
     fetchData();
@@ -62,6 +70,7 @@ const ViewAll = () => {
 
   return (
     <>
+    <Navbar/>
         <TableContainer component={Paper}>
           <Grid align="center">
             <h2> View All Data</h2>
@@ -98,7 +107,7 @@ const ViewAll = () => {
                       >
                         Edit
                       </Button>
-                    <Button variant="contained" color="secondary" onClick={() => handleDelete(post)}>
+                    <Button variant="contained" color="secondary" onClick={() => handleDelete(post._id)}>
                       Delete
                     </Button>
                   </TableCell>
@@ -108,40 +117,6 @@ const ViewAll = () => {
           </Table>
         </TableContainer>
     </>
-
-    //       <div align="center">
-    //       <h2>View All Data</h2>
-    //         <table border={1}>
-    //           <thead>
-    //             <tr>
-    //                <th>User Name</th>
-    //                <th>Email</th>
-    //                <th>Age</th>
-    //                <th>Gender</th>
-    //                <th>Education</th>
-    //                <th>Subjects</th>
-    //                <th>Action</th>
-    //             </tr>
-    //         </thead>
-    //         <tbody>
-    //         {data.map(post => (
-    //           <tr>
-    //             <td>{post.username}</td>
-    //             <td>{post.email}</td>
-    //             <td>{post.age}</td>
-    //             <td>{post.gender}</td>
-    //             <td>{post.education}</td>
-    //             <td>{post.subjects}</td>
-    //             <td>
-    //               <button>Edit</button>
-    //               <button>Delete</button>
-    //               {/* <Button component={Link} to="/edit" color="green">Edit</Button> */}
-    //             </td>
-    //           </tr>
-    //         ))}
-    //        </tbody>
-    //     </table>
-    // </div>
   );
 };
 

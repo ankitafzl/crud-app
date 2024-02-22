@@ -1,0 +1,29 @@
+.MuiRadio-colorSecondary.Mui-checked{
+    color: rgb(0, 128, 107)!important;
+}
+/* .MuiIconButton-colorSecondary {
+    color: blue !important;
+} */
+.css-sghohy-MuiButtonBase-root-MuiButton-root{
+    background-color:  rgb(0, 128, 107)!important;
+}
+.MuiCheckbox-root {
+    color:  rgb(0, 128, 107)!important;
+}
+.paper{
+    padding: '30px 20px';
+    margin: '20px auto'
+}
+.formControl{
+    margin-top: '10px';
+}
+
+h2{
+    margin: '0px';
+    padding-top: 2rem!important;
+    color:  rgb(0, 128, 107)!important;
+}
+.box{
+    width: 40%!important;
+    text-decoration:'center';
+}

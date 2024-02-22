@@ -9,6 +9,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
 import { useLocation } from 'react-router';
+import Navbar from '../Navbar/Navbar';
 
 const Update = () => {
   const paperStyle = { padding: '30px 20px', width: 400, margin: '20px auto' }
@@ -31,19 +32,11 @@ const Update = () => {
   }
 
 
-  const handleCheckboxChange = (subject) => {
-    const updatedSubjects = updateData.subjects.includes(subject)
-      ? updateData.subjects.filter((s) => s !== subject)
-      : [...updateData.subjects, subject];
-
-    setUpdateData({ ...updateData, subjects: updatedSubjects });
-  };
-    
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-    await fetch(`https://crudcrud.com/api/b0ba154660574efa9edffa0662440163/unicorns/${location.state._id}`, {
+    await fetch(`https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns/${location.state._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updateData),
@@ -62,6 +55,8 @@ const Update = () => {
   };
 
     return (
+      <>
+      <Navbar/>
       <Grid>
       <Paper elevation={20} style={paperStyle}>
         <Grid align="center">
@@ -92,15 +87,16 @@ const Update = () => {
           <FormControl style={marginTop}>
             <FormLabel component="legend">Subjects</FormLabel>
             <FormGroup name="subjects" style={{ display: 'initial' }}>
-              <FormControlLabel name="subjects" checked={updateData.subjects.includes('Data Structure')} control={<Checkbox />} value="Data Structure" label="Data Structure" onChange={handleCheckboxChange}/>
-              <FormControlLabel name="subjects" checked={updateData.subjects.includes('ReactJs')} control={<Checkbox />} value="ReactJs" label="ReactJs" onChange={handleCheckboxChange}/>
-              <FormControlLabel name="subjects" checked={updateData.subjects.includes('Java')} control={<Checkbox />} value="Java" label="Java" onChange={handleCheckboxChange}/>
+              <FormControlLabel name="subjects" checked={updateData.subjects.includes("Data Structure")} control={<Checkbox />} value="Data Structure" label="Data Structure" onChange={handleChange}/>
+              <FormControlLabel name="subjects" checked={updateData.subjects.includes("ReactJs")} control={<Checkbox />} value="ReactJs" label="ReactJs" onChange={handleChange}/>
+              <FormControlLabel name="subjects" checked={updateData.subjects.includes("Java")} control={<Checkbox />} value="Java" label="Java" onChange={handleChange}/>
             </FormGroup>
           </FormControl>
           <Button type='submit' variant="contained" color='primary' onClick={handleSubmit}>Update</Button>
         </form>
       </Paper>
     </Grid>
+      </>
     );
 }
 

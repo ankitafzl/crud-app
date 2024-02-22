@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './style.css';
-import { Button, FormGroup, Grid, Paper, TextField } from "@mui/material";
+import './AddUser.css';
+import { Button, FormGroup, Grid, Paper, TextField,Box } from "@mui/material";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -10,12 +10,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
 import FormHelperText from "@mui/material/FormHelperText";
+import Navbar from "../Navbar/Navbar";
 
 const AddUser = () => {
 
-  //const paperStyle = { padding: '30px 20px', width: 400, margin: '20px auto' }
-  //const headerStyle = { margin: '0px' }
-  //const marginTop = { marginTop: '10px' }
+  const paperStyle = { padding: '30px 20px', width: 400, margin: '20px auto' }
+  const headerStyle = { margin: '0px' }
+  const marginTop = { marginTop: '10px' }
 
   const initialValues = {
     username: '',
@@ -139,7 +140,7 @@ const AddUser = () => {
     };
 
     try {
-        const response=await fetch("https://crudcrud.com/api/b0ba154660574efa9edffa0662440163/unicorns", {
+        const response=await fetch("https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns", {
         method: "POST",
         headers: { "content-type": "application/JSON" },
         body: JSON.stringify(allData)
@@ -158,10 +159,14 @@ const AddUser = () => {
 
 
   return (
+    <>
     <Grid>
-      <Paper elevation={20} style={{padding: '30px 20px', width: 400, margin: '20px auto'}}>
+    
+      <Paper elevation={20} style={{paperStyle}}>
+      <Navbar/>
+        <Box>
         <Grid align="center">
-          <h2 style={{ margin: '0px' }}> Add User</h2>
+          <h2 style={{headerStyle}}> Add User</h2>
         </Grid>
         <form onSubmit={handleSubmit}>
           <TextField fullWidth label="User Name" name="username" variant="standard" value={addData.username} onChange={handleChange}/>
@@ -182,7 +187,7 @@ const AddUser = () => {
             {error}
           </FormHelperText>
         ))}
-          <FormControl component="fieldset" style={{ marginTop: '10px' }} >
+          <FormControl component="fieldset" className="formControl">
             <FormLabel component="legend" variant="standard">Gender</FormLabel>
             <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
               <FormControlLabel value="female" name="gender" onChange={handleChange} control={<Radio />} label="Female" checked={addData.gender==='female'} />
@@ -210,8 +215,8 @@ const AddUser = () => {
               ))}        
           </FormControl>
 
-          <FormControl style={{ marginTop: '10px' }}>
-            <FormLabel component="legend">Subjects</FormLabel>
+          <FormControl className="formControl">
+            <FormLabel component="legend" style={{marginTop}}>Subjects</FormLabel>
             <FormGroup name="subjects" style={{ display: 'initial' }}>
               <FormControlLabel name="subjects" onChange={handleChange} checked={addData.subjects.includes('Data Structure')} control={<Checkbox />} value="Data Structure" label="Data Structure" />
               <FormControlLabel name="subjects" onChange={handleChange} checked={addData.subjects.includes('ReactJs')} control={<Checkbox />} value="ReactJs" label="ReactJs" />
@@ -225,8 +230,10 @@ const AddUser = () => {
           </FormControl>
           <Button type='submit' variant="contained" color='primary'>Submit</Button>
         </form>
+        </Box>
       </Paper>
     </Grid>
+    </>
   );
 }
 

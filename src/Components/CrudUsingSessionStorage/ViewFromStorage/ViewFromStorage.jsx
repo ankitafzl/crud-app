@@ -7,9 +7,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button, Grid } from "@mui/material";
+import Navbar from '../Navbar/Navbar';
+import { useNavigate } from 'react-router';
 
 const ViewFromStorage = () =>{
   const [viewData, setViewData] = useState([]);
+  const navigate=useNavigate();
 
   useEffect(() => {
     const storedData = sessionStorage.getItem('addData');    
@@ -20,8 +23,13 @@ const ViewFromStorage = () =>{
     }
   }, []);
 
+  const handleEdit = (data) => {
+    navigate('/editInStorage', { state: data }); 
+  };
+
   return (
     <>
+    <Navbar/>
     <TableContainer component={Paper}>
           <Grid align="center">
             <h2> View All Data From Session Storage</h2>
@@ -50,7 +58,7 @@ const ViewFromStorage = () =>{
                   <TableCell align="center">{post.education}</TableCell>
                   <TableCell align="center">{post.subjects}</TableCell>
                   <TableCell align="center">
-                    <Button variant="contained" color="primary" style={{ marginRight: 4 }}>Edit</Button>
+                    <Button variant="contained" color="primary" style={{ marginRight: 4 }} onClick={() => handleEdit(post)}>Edit</Button>
                     <Button variant="contained" color="secondary">Delete</Button>
                   </TableCell>
                 </TableRow>

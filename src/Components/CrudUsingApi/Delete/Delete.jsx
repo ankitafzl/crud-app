@@ -8,6 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
+import Navbar from '../Navbar/Navbar';
 
 const Delete = (props1) => {
   const paperStyle = { padding: '30px 20px', width: 400, margin: '20px auto' }
@@ -16,7 +17,7 @@ const Delete = (props1) => {
     
 
    function handleSubmit(){
-    fetch("https://crudcrud.com/api/b0ba154660574efa9edffa0662440163/unicorns",{
+    fetch("https://crudcrud.com/api/3260088d0fad40e7a9de4a2f856d81e5/unicorns",{
       method:'DELETE'
     }).then((result)=>{
       result.json().then((resp)=>{
@@ -26,7 +27,9 @@ const Delete = (props1) => {
    }
 
     return (
-      <Grid>
+      <>
+        <Navbar/>
+        <Grid>
       <Paper elevation={20} style={paperStyle}>
         <Grid align="center">
           <h2 style={headerStyle}> Delete User Deatails</h2>
@@ -65,6 +68,7 @@ const Delete = (props1) => {
         </form>
       </Paper>
     </Grid>
+      </>
     );
 }
 export default Delete;

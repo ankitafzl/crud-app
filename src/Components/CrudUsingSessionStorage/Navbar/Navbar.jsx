@@ -7,21 +7,11 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-         
-        <Button component={Link} to="/" color="inherit">
+      <Button component={Link} to="/" color="inherit">
          CrudApp
         </Button>
-        <Button component={Link} to="/addUser" color="inherit">
-          Add User
-        </Button>
-        <Button component={Link} to="/viewAll" color="inherit">
-          View All
-        </Button>
-        <Button component={Link} to="/viewAll" color="inherit">
-          Update
-        </Button>
-        <Button component={Link} to="/delete" color="inherit">
-          Delete 
+       <Button component={Link} to="/homeSession" color="inherit">
+         Home
         </Button>
         <Button component={Link} to="/addInStorage" color="inherit">
           AddInStorage 
@@ -29,15 +19,15 @@ const Navbar = () => {
         <Button component={Link} to="/viewStorage" color="inherit">
           ViewFromStorage 
         </Button>
-        <Button component={Link} to="/editInStorage" color="inherit">
+        <Button component={Link} to="/viewStorage" color="inherit">
           EditInStorage 
         </Button>
-        <Button component={Link} to="/deleteFromStorage" color="inherit">
+        <Button component={Link} to="/viewStorage" color="inherit">
           DeleteFromStorage
         </Button>
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 export default Navbar;
